@@ -38,25 +38,27 @@ And I have close 50 student folders. My problem is how do I take something as si
 - writing a complex shell script
 
 ### Solution
+
 1. __Create a Python script__: Let's call it `tester/tmp/listdir.py` (Yes I'm not very creative with names). Here's what it looks like:
 
-```python
-import os
-from os import path
-root = path.dirname(path.realpath(__file__+"/.."))
-root = path.join(root, "student_scripts")
-for folder in os.listdir(root):
-    if path.isdir(path.join(root, folder)):
-        print folder+"/testerout"
-        print folder+"/studentout"
-        print folder+"/grades"
-```
+    ```python
+    import os
+    from os import path
+    root = path.dirname(path.realpath(__file__+"/.."))
+    root = path.join(root, "student_scripts")
+    for folder in os.listdir(root):
+        if path.isdir(path.join(root, folder)):
+            print folder+"/testerout"
+            print folder+"/studentout"
+            print folder+"/grades"
+    ```
+
 1. __Create the folder structure__: Next we use a neat feature of [Shell Expansion](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html), Command Substitution. Next enter the following command in the terminal:
 
-```sh
-$ mkdir H2
-$ mkdir -p `python ~/dev/personal/h2_tester/tmp/listdir.py`
-```
+    ```sh
+    $ mkdir H2
+    $ mkdir -p `python ~/dev/personal/h2_tester/tmp/listdir.py`
+    ```
 
 And that's it. Finito. Folder structure is created.
 
